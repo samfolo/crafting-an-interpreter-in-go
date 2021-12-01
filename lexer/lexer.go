@@ -24,12 +24,15 @@ func (lex *Lexer) readChar() {
 	} else {
 		lex.ch = lex.input[lex.readPosition]
 	}
+
 	lex.position = lex.readPosition
 	lex.readPosition += 1
 }
 
 func (lex *Lexer) NextToken() token.Token {
 	var tok token.Token
+
+	lex.skipWhitespace()
 
 	switch lex.ch {
 	case '=':
@@ -51,6 +54,14 @@ func (lex *Lexer) NextToken() token.Token {
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
+	default:
+		if isLetter(lex.ch) {
+			tok.Literal = lex.readIdentifier()
+			tok.Type = token.LookupIdent(tok.Literal)
+			return tok
+		} else {
+			tok = newToken(token.ILLEGAL, lex.ch)
+		}
 	}
 
 	lex.readChar()
@@ -59,4 +70,25 @@ func (lex *Lexer) NextToken() token.Token {
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
 	return token.Token{Type: tokenType, Literal: string(ch)}
+}
+
+func (lex *Lexer) readIdentifier() string {
+	position := lex.position
+
+	for isLetter(lex.ch) {
+		lex.readChar()
+	}
+
+	return lex.input[position:lex.position]
+}
+
+// what can be used in variable and function names
+func isLetter(ch byte) bool {
+	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
+}
+
+func (lex *Lexer) skipWhitespace() {
+	for lex.ch == ' ' || lex.ch == '\t' || lex.ch == '\n' || lex.ch == '\r' {
+		lex.readChar()
+	}
 }
