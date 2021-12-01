@@ -10,9 +10,9 @@ import (
 
 func TestLetStatements(t *testing.T) {
 	input := `
-	let x 5;
-	let = 10;
-	let 838383;
+	let x = 5;
+	let y = 10;
+	let foobar = 838383;
 	`
 
 	lex := lexer.New(input)
@@ -90,7 +90,7 @@ func TestReturnStatements(t *testing.T) {
 	checkParserErrors(t, p)
 
 	if len(program.Statements) != 3 {
-		t.Fatalf("program.Statements does nit contain 3 statements. got='%q'", len(program.Statements))
+		t.Fatalf("program.Statements does nit contain 3 statements. got='%d'", len(program.Statements))
 	}
 
 	for _, statement := range program.Statements {
