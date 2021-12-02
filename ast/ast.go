@@ -160,3 +160,12 @@ func (es *ExpressionStatement) String() string {
 
 	return ""
 }
+
+type Boolean struct {
+	Token token.Token // will be token.BOOL
+	Value bool
+}
+
+func (b *Boolean) expressionNode()      {}
+func (b *Boolean) TokenLiteral() string { return b.Token.Literal }
+func (b *Boolean) String() string       { return b.Token.Literal }
