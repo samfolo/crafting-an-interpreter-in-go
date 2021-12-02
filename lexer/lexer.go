@@ -13,6 +13,7 @@ type Lexer struct {
 
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
+	// set lexer on first character upon initialisation:
 	l.readChar()
 
 	return l
