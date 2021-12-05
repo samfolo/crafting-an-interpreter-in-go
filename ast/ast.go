@@ -206,7 +206,7 @@ func (bs *BlockStatement) String() string {
 	var out bytes.Buffer
 
 	for _, statement := range bs.Statements {
-		out.WriteString(statement.String() + "\n")
+		out.WriteString(statement.String())
 	}
 
 	return out.String()
