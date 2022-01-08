@@ -34,6 +34,7 @@ const (
 	// delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
+	COLON     = ":"
 
 	// scoping
 	LPAREN   = "("
