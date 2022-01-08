@@ -29,6 +29,10 @@ type HashKey struct {
 	Value uint64
 }
 
+type Hashable interface {
+	HashKey() HashKey
+}
+
 type Object interface {
 	Type() ObjectType
 	Inspect() string
