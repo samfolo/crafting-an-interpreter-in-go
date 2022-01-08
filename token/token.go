@@ -13,8 +13,9 @@ const (
 	EOF     = "EOF"
 
 	// primitive entities
-	IDENT = "IDENT" // function names, variable names, etc.
-	INT   = "INT"
+	IDENT  = "IDENT" // function names, variable names, etc.
+	INT    = "INT"
+	STRING = "STRING"
 
 	// operators
 	ASSIGN   = "="

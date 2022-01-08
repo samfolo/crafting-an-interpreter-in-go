@@ -5,3 +5,4 @@ Experimentation with interpreter creation.
 ### TODO
 
 - Fully support Unicode
+- Add support for escaped chars
