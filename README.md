@@ -6,3 +6,4 @@ Experimentation with interpreter creation.
 
 - Fully support Unicode
 - Add support for escaped chars
+- separate-chaining or open-addressing to avoid hash collisions in hash literal object mappings
